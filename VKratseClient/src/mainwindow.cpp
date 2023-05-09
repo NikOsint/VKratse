@@ -4,21 +4,26 @@
 
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
 
   setWindowTitle("VKratse");
   setEnabled(false);
 
+  layout = new QGridLayout(this);
+  this->setLayout(layout);
+
   tabWidget = new QTabWidget(this);
+  layout->addWidget(tabWidget);
 
-  chatsWidget = new QWidget(this);
-  tabWidget->addTab(chatsWidget, "Chats");
+//  chatsWidget = new ChatsWidget(this);
+//  tabWidget->addTab(chatsWidget, "Chats");
 
-  settingsWidget = new QWidget(this);
+  authorizationDialog = new AuthorizationDialog(this);
+
+  settingsWidget = new SettingsWidget(this, authorizationDialog);
   tabWidget->addTab(settingsWidget, "Settings");
 
-  authorizationWidget = new AuthorizationDialog(this);
-  authorizationWidget->show();
+  authorizationDialog->show();
 }
 
 MainWindow::~MainWindow() = default;

@@ -17,6 +17,7 @@ protected:
   QLineEdit *loginLineEdit, *passwordLineEdit;
   QPushButton *registerButton, *logInButton;
   RegistrationDialog *registrationDialog;
+  QWidget *MainWindow;
 
 public:
   explicit AuthorizationDialog(QWidget* parent = nullptr);
@@ -24,7 +25,7 @@ public:
 
 public slots:
   void refresh() const;
-  void logIn() const;
+  void logIn();
   void reg() const;
 };
 

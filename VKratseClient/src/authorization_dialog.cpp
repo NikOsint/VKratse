@@ -4,7 +4,7 @@
 
 #include "authorization_dialog.h"
 
-AuthorizationDialog::AuthorizationDialog(QWidget* parent) : QDialog(parent) {
+AuthorizationDialog::AuthorizationDialog(QWidget* parent) : QDialog(parent), MainWindow(parent) {
 
   setWindowTitle("VKratse");
 
@@ -34,13 +34,6 @@ AuthorizationDialog::AuthorizationDialog(QWidget* parent) : QDialog(parent) {
   logInButton->setEnabled(false);
   layout->addWidget(logInButton, 3, 1, 1, 1);
 
-//  layout->setRowStretch(0, 1);
-//  layout->setRowStretch(1, 1);
-//  layout->setRowStretch(2, 1);
-//  layout->setRowStretch(3, 1);
-//  layout->setColumnStretch(0, 1);
-//  layout->setColumnStretch(1, 1);
-
   messageBox = new QMessageBox(this);
   registrationDialog = new RegistrationDialog(this);
 
@@ -60,9 +53,11 @@ void AuthorizationDialog::refresh() const {
   }
 }
 
-void AuthorizationDialog::logIn() const {
-  messageBox->setText("Unsuccessful :(");
-  messageBox->show();
+void AuthorizationDialog::logIn() {
+  hide();
+  if (MainWindow) {
+    MainWindow->setEnabled(true);
+  }
 }
 
 void AuthorizationDialog::reg() const {

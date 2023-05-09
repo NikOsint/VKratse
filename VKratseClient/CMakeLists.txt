@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.16)
 project(VKratseClient)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -21,11 +21,12 @@ add_executable(${PROJECT_NAME}
         src/mainwindow.cpp
         include/authorization_dialog.h
         src/authorization_dialog.cpp
-        include/registration_dialog.h src/registration_dialog.cpp)
+        include/registration_dialog.h
+        src/registration_dialog.cpp
+        include/settings_widget.h
+        src/settings_widget.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         Qt5::Core
         Qt5::Gui
-        Qt5::Widgets
-        )
-
+        Qt5::Widgets)

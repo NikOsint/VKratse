@@ -5,19 +5,20 @@
 #ifndef VKRATSECLIENT_MAINWINDOW_H
 #define VKRATSECLIENT_MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QTabWidget>
 
 #include "authorization_dialog.h"
+#include "settings_widget.h"
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QWidget {
   Q_OBJECT
 
 protected:
   QTabWidget *tabWidget;
-  QGridLayout *layout, *chatsLayout, *settingsLayout;
-  AuthorizationDialog *authorizationWidget;
-  QWidget *chatsWidget, *settingsWidget;
+  QGridLayout *layout;
+  AuthorizationDialog *authorizationDialog;
+//  ChatsWidget *chatsWidget;
+  SettingsWidget *settingsWidget;
 
 public:
   explicit MainWindow(QWidget* parent = nullptr);

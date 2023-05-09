@@ -80,6 +80,7 @@ void RegistrationDialog::cancel() {
 }
 
 void RegistrationDialog::reg() const {
-  messageBox->setText("Registration is unavailable :(");
+  messageBox->setWindowTitle("Unimplemented Feature");
+  messageBox->setText("This feature is under development");
   messageBox->show();
 }
