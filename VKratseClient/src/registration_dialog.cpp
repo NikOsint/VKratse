@@ -54,8 +54,6 @@ RegistrationDialog::RegistrationDialog(QWidget* parent) : QDialog(parent) {
   registerButton->setEnabled(false);
   layout->addWidget(registerButton, 5, 1, 1, 1);
 
-  messageBox = new QMessageBox(this);
-
   connect(registerButton, SIGNAL(pressed()), this, SLOT(reg()));
   connect(cancelButton, SIGNAL(pressed()), this, SLOT(cancel()));
   connect(loginLineEdit, SIGNAL(textEdited(QString)), this, SLOT(refresh()));
@@ -80,7 +78,5 @@ void RegistrationDialog::cancel() {
 }
 
 void RegistrationDialog::reg() const {
-  messageBox->setWindowTitle("Unimplemented Feature");
-  messageBox->setText("This feature is under development");
-  messageBox->show();
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development");
 }

@@ -20,7 +20,6 @@ protected:
   QPushButton *changeAvatarButton, *changePasswordButton, *changeThemeButton, *logOutButton;
   QFrame *leftFrame, *rightFrame, *centerFrame;
   QPixmap *avatar;
-  QMessageBox *messageBox;
   QWidget *mainWindow;
   AuthorizationDialog *authorizationDialog;
 

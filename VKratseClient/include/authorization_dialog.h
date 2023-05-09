@@ -12,7 +12,6 @@ class AuthorizationDialog : public QDialog {
 
 protected:
   QGridLayout *layout;
-  QMessageBox *messageBox;
   QLabel *vkratseLabel;
   QLineEdit *loginLineEdit, *passwordLineEdit;
   QPushButton *registerButton, *logInButton;

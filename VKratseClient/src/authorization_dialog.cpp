@@ -34,7 +34,6 @@ AuthorizationDialog::AuthorizationDialog(QWidget* parent) : QDialog(parent), Mai
   logInButton->setEnabled(false);
   layout->addWidget(logInButton, 3, 1, 1, 1);
 
-  messageBox = new QMessageBox(this);
   registrationDialog = new RegistrationDialog(this);
 
   connect(registerButton, SIGNAL(pressed()), this, SLOT(reg()));

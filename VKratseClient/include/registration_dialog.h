@@ -16,7 +16,6 @@ Q_OBJECT
 
 protected:
   QGridLayout *layout;
-  QMessageBox *messageBox;
   QLabel *registrationLabel, *loginLabel, *passwordLabel, *nameLabel, *surnameLabel;
   QLineEdit *loginLineEdit, *passwordLineEdit, *nameLineEdit, *surnameLineEdit;
   QPushButton *registerButton, *cancelButton;

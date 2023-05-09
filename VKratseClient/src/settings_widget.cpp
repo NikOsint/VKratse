@@ -13,8 +13,6 @@ SettingsWidget::SettingsWidget(QWidget* parent,
   this->authorizationDialog = authorizationDialog;
   this->isDarkTheme = isDarkTheme;
 
-  messageBox = new QMessageBox(this);
-
   layout = new QGridLayout(this);
   this->setLayout(layout);
 
@@ -76,9 +74,7 @@ SettingsWidget::~SettingsWidget() = default;
 void SettingsWidget::setAvatar(const QString &filename) {
   QPixmap pm(filename);
   if (pm.isNull()) {
-    messageBox->setWindowTitle("Error Loading Avatar");
-    messageBox->setText("Can not open file " + filename);
-    messageBox->show();
+    QMessageBox::warning(nullptr, "Error Loading Avatar", "Can not open file " + filename);
     avatar = new QPixmap(QSize(600, 600));
     return;
   }
@@ -97,9 +93,7 @@ void SettingsWidget::changePassword() const {
 }
 
 void SettingsWidget::changeTheme() const {
-  messageBox->setWindowTitle("Unimplemented Feature");
-  messageBox->setText("This feature is under development");
-  messageBox->show();
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development");
 }
 
 void SettingsWidget::logOut() const {
@@ -108,8 +102,7 @@ void SettingsWidget::logOut() const {
     authorizationDialog->setEnabled(true);
     authorizationDialog->show();
   } else {
-    messageBox->setWindowTitle("Log Out Error");
-    messageBox->setText("ERROR: can not log out properly\nPlease, close the application - it will log you out");
-    messageBox->show();
+    QMessageBox::warning(nullptr, "Log Out Error",
+                         "ERROR: can not log out properly\nPlease, close the application - it will log you out");
   }
 }
