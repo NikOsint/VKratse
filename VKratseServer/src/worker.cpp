@@ -28,7 +28,7 @@ void VKratseWorker::sendJson(const QJsonObject &json) {
   const QByteArray jsonData = QJsonDocument(json).toJson(QJsonDocument::Compact);
   emit logMessage("Sending to " + username + " - " + QString::fromUtf8(jsonData));
   QDataStream socketStream(socket);
-//  socketStream.setVersion(QDataStream::Qt_5_15);
+  socketStream.setVersion(QDataStream::Qt_5_15);
   socketStream << jsonData;
 }
 
@@ -39,7 +39,7 @@ void VKratseWorker::disconnectFromClient() {
 void VKratseWorker::receiveJson() {
   QByteArray jsonData;
   QDataStream socketStream(socket);
-//  socketStream.setVersion(QDataStream::Qt_5_15);
+  socketStream.setVersion(QDataStream::Qt_5_15);
   while (true) {
     socketStream.startTransaction();
     socketStream >> jsonData;

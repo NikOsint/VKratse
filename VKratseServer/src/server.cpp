@@ -145,7 +145,6 @@ void VKratseServer::jsonReceived(VKratseWorker *from, const QJsonObject &json) {
         logMessage(QLatin1String("JSON incorrect"));
     }
   }
-
 }
 
 void VKratseServer::userDisconnected(VKratseWorker *user) {
@@ -158,7 +157,7 @@ void VKratseServer::userError(VKratseWorker *user) {
   if (!user) {
     return;
   }
-  logMessage(QLatin1String("Error from ") + user->getUsername());
+  logMessage(QLatin1String("Error from user \"") + user->getUsername() + QLatin1String("\""));
 }
 
 void VKratseServer::sendJson(VKratseWorker *to, const QJsonObject &json) {

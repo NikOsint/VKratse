@@ -31,7 +31,6 @@ private slots:
   void userError(VKratseWorker *user);
 
 private:
-//  void receivedJson(VKratseWorker *from, const QJsonObject &json);
   void sendJson(VKratseWorker *to, const QJsonObject &json);
   QVector<VKratseWorker*> workers;
 };
