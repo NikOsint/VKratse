@@ -78,5 +78,5 @@ void RegistrationDialog::cancel() {
 }
 
 void RegistrationDialog::reg() const {
-  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development");
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }

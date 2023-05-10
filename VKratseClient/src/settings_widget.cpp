@@ -30,7 +30,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
   centerFrameLayout = new QGridLayout(centerFrame);
   centerFrame->setLayout(centerFrameLayout);
 
-  setAvatar("../resources/defalt.jpg");
+  setAvatar("../resources/default.jpg");
   avatarLabel = new QLabel(this);
   avatarLabel->setPixmap(*avatar);
   avatarLabel->setAlignment(Qt::AlignCenter);
@@ -85,15 +85,15 @@ void SettingsWidget::setAvatar(const QString &filename) {
 }
 
 void SettingsWidget::changeAvatar() const {
-  //TODO
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void SettingsWidget::changePassword() const {
-  //TODO
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void SettingsWidget::changeTheme() const {
-  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development");
+  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void SettingsWidget::logOut() const {

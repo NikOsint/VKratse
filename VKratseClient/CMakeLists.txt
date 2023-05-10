@@ -11,6 +11,7 @@ find_package(Qt5 COMPONENTS
         Core
         Gui
         Widgets
+        Network
         REQUIRED)
 
 include_directories(${PROJECT_NAME} include)
@@ -24,9 +25,12 @@ add_executable(${PROJECT_NAME}
         include/registration_dialog.h
         src/registration_dialog.cpp
         include/settings_widget.h
-        src/settings_widget.cpp)
+        src/settings_widget.cpp
+        include/chats_widget.h
+        src/chats_widget.cpp include/new_chat_dialog.h src/new_chat_dialog.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         Qt5::Core
         Qt5::Gui
-        Qt5::Widgets)
+        Qt5::Widgets
+        Qt5::Network)

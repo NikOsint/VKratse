@@ -9,6 +9,7 @@
 
 #include "authorization_dialog.h"
 #include "settings_widget.h"
+#include "chats_widget.h"
 
 class MainWindow : public QWidget {
   Q_OBJECT
@@ -17,7 +18,7 @@ protected:
   QTabWidget *tabWidget;
   QGridLayout *layout;
   AuthorizationDialog *authorizationDialog;
-//  ChatsWidget *chatsWidget;
+  ChatsWidget *chatsWidget;
   SettingsWidget *settingsWidget;
 
 public:

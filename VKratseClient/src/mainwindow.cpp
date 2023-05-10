@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
   tabWidget = new QTabWidget(this);
   layout->addWidget(tabWidget);
 
-//  chatsWidget = new ChatsWidget(this);
-//  tabWidget->addTab(chatsWidget, "Chats");
+  chatsWidget = new ChatsWidget(this);
+  tabWidget->addTab(chatsWidget, "Chats");
 
   authorizationDialog = new AuthorizationDialog(this);
 
