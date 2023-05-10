@@ -14,7 +14,8 @@ ChatsWidget::ChatsWidget(QWidget* parent) : QWidget(parent) {
   chatsFrame->setFrameShadow(QFrame::Shadow::Plain);
   chatsFrame->setLineWidth(1);
   chatsFrame->setMidLineWidth(1);
-  layout->addWidget(chatsFrame, 0, 0, 1, 1);
+  chatsFrame->setMaximumWidth(300);
+  layout->addWidget(chatsFrame, 0, 0);
   chatsLayout = new QGridLayout(chatsFrame);
   chatsFrame->setLayout(chatsLayout);
   chatsTableWidget = new QTableWidget(this);
@@ -32,7 +33,8 @@ ChatsWidget::ChatsWidget(QWidget* parent) : QWidget(parent) {
   messagesFrame->setFrameShadow(QFrame::Shadow::Plain);
   messagesFrame->setLineWidth(1);
   messagesFrame->setMidLineWidth(1);
-  layout->addWidget(messagesFrame, 0, 1, 1, 2);
+  messagesFrame->setMinimumWidth(300);
+  layout->addWidget(messagesFrame, 0, 1);
   messagesLayout = new QGridLayout(messagesFrame);
   messagesFrame->setLayout(messagesLayout);
   messagesTableWidget = new QTableWidget(this);
@@ -71,7 +73,7 @@ void ChatsWidget::sendMessage() const {
   int rows = messagesTableWidget->rowCount();
   messagesTableWidget->setRowCount(rows + 1);
   messagesTableWidget->setItem(rows, 0, new QTableWidgetItem(newMessageLineEdit->text()));
-  messagesTableWidget->setItem(rows, 1, new QTableWidgetItem(QDate::currentDate().toString()));
+  messagesTableWidget->setItem(rows, 1, new QTableWidgetItem(QDate::currentDate().toString("dd.MM.yyyy")));
   messagesTableWidget->setItem(rows, 2, new QTableWidgetItem(QTime::currentTime().toString()));
   messagesTableWidget->resizeColumnToContents(0);
   messagesTableWidget->resizeColumnToContents(1);

@@ -1,0 +1,8 @@
+//
+// Created by nikosint on 10.05.23.
+//
+
+#ifndef VKRATSECLIENT_VKRATSEUSER_H
+#define VKRATSECLIENT_VKRATSEUSER_H
+
+#endif //VKRATSECLIENT_VKRATSEUSER_H

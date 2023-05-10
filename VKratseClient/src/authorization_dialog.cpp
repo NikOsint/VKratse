@@ -53,6 +53,8 @@ void AuthorizationDialog::refresh() const {
 }
 
 void AuthorizationDialog::logIn() {
+  loginLineEdit->clear();
+  passwordLineEdit->clear();
   hide();
   if (MainWindow) {
     MainWindow->setEnabled(true);
