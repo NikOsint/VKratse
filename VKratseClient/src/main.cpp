@@ -1,10 +1,10 @@
 #include <QApplication>
 
-#include "mainwindow.h"
+#include "client.h"
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
-  MainWindow mainWindow{};
-  mainWindow.showMaximized();
+  VKratseClient client{};
+  client.showMaximized();
   return QApplication::exec();
 }

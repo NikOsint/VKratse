@@ -33,7 +33,7 @@ public:
 
   void setAvatar(const QString &filename);
 
-public slots:
+private slots:
   void updateUser() const;
   void changeAvatar() const;
   void changePassword() const;

@@ -4,9 +4,10 @@
 
 #include "new_chat_dialog.h"
 
-NewChatDialog::NewChatDialog(QWidget* parent, QTableWidget* chatsTableWidget): QDialog(parent) {
+NewChatDialog::NewChatDialog(QWidget* parent, QTableWidget* chatsTableWidget, Chats* chats): QDialog(parent) {
 
   this->chatsTableWidget = chatsTableWidget;
+  this->chats = chats;
 
   setWindowTitle("New Chat");
 
@@ -15,11 +16,12 @@ NewChatDialog::NewChatDialog(QWidget* parent, QTableWidget* chatsTableWidget): Q
   this->setLayout(layout);
 
   newChatLabel = new QLabel(this);
-  newChatLabel->setText("Please, introduce yourself");
+  newChatLabel->setText("Who would you like to chat with?");
   newChatLabel->setAlignment(Qt::AlignCenter);
   layout->addWidget(newChatLabel, 0, 0, 1, 2);
 
   newChatLineEdit = new QLineEdit(this);
+  newChatLineEdit->setPlaceholderText("Type username...");
   layout->addWidget(newChatLineEdit, 1, 0, 1, 2);
 
   cancelButton = new QPushButton(this);
@@ -48,16 +50,18 @@ void NewChatDialog::refresh() const {
 
 void NewChatDialog::createChat() {
   QString newChat = newChatLineEdit->text();
-  int chats = chatsTableWidget->rowCount();
-  for (int i = 0; i < chats; ++i) {
+  int chatCount = chatsTableWidget->rowCount();
+  for (int i = 0; i < chatCount; ++i) {
     if (chatsTableWidget->item(i, 0)->text() == newChat) {
       QMessageBox::information(nullptr, "Chat Already Exists", "You already have chat with " + newChat);
       return;
     }
   }
-  chatsTableWidget->setRowCount(chats + 1);
-  chatsTableWidget->setItem(chats, 0, new QTableWidgetItem(newChat));
+  chatsTableWidget->setRowCount(chatCount + 1);
+  chatsTableWidget->setItem(chatCount, 0, new QTableWidgetItem(newChat));
+  chatsTableWidget->item(chatCount, 0)->setBackgroundColor(QColor(166, 220, 237));
   chatsTableWidget->resizeColumnToContents(0);
+  chats->operator[](newChat) = Chat();
   newChatLineEdit->clear();
   close();
 //  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO

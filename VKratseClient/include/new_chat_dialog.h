@@ -11,6 +11,13 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTableWidget>
+#include <QMap>
+#include <QVector>
+
+#include "user.h"
+
+typedef QVector<QStringList> Chat;
+typedef QMap<QString, Chat> Chats;
 
 class NewChatDialog : public QDialog {
   Q_OBJECT
@@ -21,12 +28,13 @@ protected:
   QLineEdit *newChatLineEdit;
   QPushButton *createChatButton, *cancelButton;
   QTableWidget *chatsTableWidget;
+  Chats *chats;
 
 public:
-  explicit NewChatDialog(QWidget* parent = nullptr, QTableWidget* chatsTableWidget = nullptr);
+  explicit NewChatDialog(QWidget* parent = nullptr, QTableWidget* chatsTableWidget = nullptr, Chats* chats = nullptr);
   ~NewChatDialog() override;
 
-public slots:
+private slots:
   void refresh() const;
   void createChat();
   void cancel();

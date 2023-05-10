@@ -2,8 +2,8 @@
 // Created by nikosint on 09.05.23.
 //
 
-#ifndef VKRATSECLIENT_MAINWINDOW_H
-#define VKRATSECLIENT_MAINWINDOW_H
+#ifndef VKRATSECLIENT_CLIENT_H
+#define VKRATSECLIENT_CLIENT_H
 
 #include <QTabWidget>
 
@@ -21,32 +21,14 @@ protected:
   ChatsWidget *chatsWidget;
   SettingsWidget *settingsWidget;
   VKratseUser *user;
+  Chats *chats;
 
 public:
   explicit VKratseClient(QWidget* parent = nullptr);
   ~VKratseClient() override;
 
-//  void begin() const;
-
 public slots:
-//  void refresh() const;
-//  void checkBook() const;
-//  void checkType() const;
-//  void checkFType() const;
-//  void checkQuan() const;
-//  void checkFilter() const;
-//  void showFilter();
-//  void clearParam() const;
-//  void importTxt();
-//  void xportTxt() const;
-//  void importExcel();
-//  void xportExcel() const;
-//  void clear();
-//  void link() const;
-//  void addBook();
-//  void plus();
-//  void minus();
-//  void changeQuan();
+
 };
 
-#endif //VKRATSECLIENT_MAINWINDOW_H
+#endif //VKRATSECLIENT_CLIENT_H

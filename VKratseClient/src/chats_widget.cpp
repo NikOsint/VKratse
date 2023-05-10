@@ -4,7 +4,10 @@
 
 #include "chats_widget.h"
 
-ChatsWidget::ChatsWidget(QWidget* parent) : QWidget(parent) {
+ChatsWidget::ChatsWidget(QWidget* parent, Chats *chats, VKratseUser *user) : QWidget(parent) {
+
+  this->chats = chats;
+  this->user = user;
 
   this->layout = new QGridLayout(this);
   this->setLayout(layout);
@@ -21,6 +24,7 @@ ChatsWidget::ChatsWidget(QWidget* parent) : QWidget(parent) {
   chatsTableWidget = new QTableWidget(this);
   chatsTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
   chatsTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+  chatsTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
   chatsTableWidget->setColumnCount(1);
   chatsTableWidget->setHorizontalHeaderLabels({"Chats"});
   chatsLayout->addWidget(chatsTableWidget, 0, 0);
@@ -38,45 +42,71 @@ ChatsWidget::ChatsWidget(QWidget* parent) : QWidget(parent) {
   messagesLayout = new QGridLayout(messagesFrame);
   messagesFrame->setLayout(messagesLayout);
   messagesTableWidget = new QTableWidget(this);
-  messagesTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-  messagesTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+  messagesTableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+  messagesTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
   messagesTableWidget->setColumnCount(3);
   messagesTableWidget->setHorizontalHeaderLabels({"Messages", "Date", "Time"});
   messagesLayout->addWidget(messagesTableWidget, 0, 0, 1, 4);
   newMessageLineEdit = new QLineEdit(this);
   newMessageLineEdit->setPlaceholderText("Type Here...");
-//  newMessageLineEdit->setEnabled(false);
+  newMessageLineEdit->setEnabled(false);
   messagesLayout->addWidget(newMessageLineEdit, 1, 0, 1, 3);
   sendMessageButton = new QPushButton(this);
   sendMessageButton->setText("Send");
   sendMessageButton->setEnabled(false);
   messagesLayout->addWidget(sendMessageButton, 1, 3, 1, 1);
 
-  newChatDialog = new NewChatDialog(this, chatsTableWidget);
+  newChatDialog = new NewChatDialog(this, chatsTableWidget, chats);
 
   connect(newChatButton, SIGNAL(pressed()), this, SLOT(newChat()));
   connect(sendMessageButton, SIGNAL(pressed()), this, SLOT(sendMessage()));
   connect(newMessageLineEdit, SIGNAL(textChanged(QString)), this, SLOT(refresh()));
+  connect(chatsTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(refresh()));
+  connect(chatsTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(refreshMessages()));
 }
 
 ChatsWidget::~ChatsWidget() = default;
 
+void ChatsWidget::refreshMessages() const {
+  messagesTableWidget->clearContents();
+  if (!chatsTableWidget->selectedItems().isEmpty()) {
+    renderChat(chatsTableWidget->selectedItems().first()->text());
+  }
+}
+
 void ChatsWidget::refresh() const {
-  if (newMessageLineEdit->text().isEmpty()) {
+  if (chatsTableWidget->selectedItems().isEmpty()) {
     sendMessageButton->setEnabled(false);
+    newMessageLineEdit->setEnabled(false);
   } else {
-    sendMessageButton->setEnabled(true);
+    newMessageLineEdit->setEnabled(true);
+    if (newMessageLineEdit->text().isEmpty()) {
+      sendMessageButton->setEnabled(false);
+    } else {
+      sendMessageButton->setEnabled(true);
+    }
   }
 }
 
 void ChatsWidget::sendMessage() const {
   int rows = messagesTableWidget->rowCount();
   messagesTableWidget->setRowCount(rows + 1);
-  messagesTableWidget->setItem(rows, 0, new QTableWidgetItem(newMessageLineEdit->text()));
-  messagesTableWidget->setItem(rows, 1, new QTableWidgetItem(QDate::currentDate().toString("dd.MM.yyyy")));
-  messagesTableWidget->setItem(rows, 2, new QTableWidgetItem(QTime::currentTime().toString()));
+  QString text = newMessageLineEdit->text();
+  QString date = QDate::currentDate().toString("dd.MM.yyyy");
+  QString time = QTime::currentTime().toString();
+  messagesTableWidget->setItem(rows, 0, new QTableWidgetItem(text));
+  messagesTableWidget->setItem(rows, 1, new QTableWidgetItem(date));
+  messagesTableWidget->setItem(rows, 2, new QTableWidgetItem(time));
+  messagesTableWidget->item(rows, 0)->setBackgroundColor(QColor(166, 220, 237));
+  messagesTableWidget->item(rows, 1)->setBackgroundColor(QColor(166, 220, 237));
+  messagesTableWidget->item(rows, 2)->setBackgroundColor(QColor(166, 220, 237));
   messagesTableWidget->resizeColumnToContents(0);
   messagesTableWidget->resizeColumnToContents(1);
+  messagesTableWidget->resizeColumnToContents(2);
+  QString currentChat = chatsTableWidget->selectedItems().first()->text();
+  chats->operator[](currentChat).insert(chats->operator[](currentChat).size(), {
+    text, date, time
+  });
   newMessageLineEdit->clear();
 //  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
@@ -84,4 +114,23 @@ void ChatsWidget::sendMessage() const {
 void ChatsWidget::newChat() const {
   newChatDialog->show();
 //  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
+}
+
+void ChatsWidget::renderChat(const QString &chat) const {
+  if (chats->contains(chat)) {
+    auto &messages = chats->operator[](chat);
+    int rows = messages.size();
+    messagesTableWidget->setRowCount(rows);
+    for (int i = 0; i < rows; ++i) {
+      messagesTableWidget->setItem(i, 0, new QTableWidgetItem(messages[i][0]));
+      messagesTableWidget->setItem(i, 1, new QTableWidgetItem(messages[i][1]));
+      messagesTableWidget->setItem(i, 2, new QTableWidgetItem(messages[i][2]));
+      messagesTableWidget->item(i, 0)->setBackgroundColor(QColor(166, 220, 237));
+      messagesTableWidget->item(i, 1)->setBackgroundColor(QColor(166, 220, 237));
+      messagesTableWidget->item(i, 2)->setBackgroundColor(QColor(166, 220, 237));
+    }
+    messagesTableWidget->resizeColumnToContents(0);
+    messagesTableWidget->resizeColumnToContents(1);
+    messagesTableWidget->resizeColumnToContents(2);
+  }
 }

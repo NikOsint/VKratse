@@ -6,6 +6,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#conan_basic_setup()
 
 find_package(Qt5 COMPONENTS
         Core
@@ -18,8 +20,8 @@ include_directories(${PROJECT_NAME} include)
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        include/mainwindow.h
-        src/mainwindow.cpp
+        include/client.h
+        src/client.cpp
         include/authorization_dialog.h
         src/authorization_dialog.cpp
         include/registration_dialog.h
@@ -31,7 +33,8 @@ add_executable(${PROJECT_NAME}
         include/new_chat_dialog.h
         src/new_chat_dialog.cpp
         include/user.h
-        src/user.cpp)
+        src/user.cpp
+        include/message_type.h)
 
 target_link_libraries(${PROJECT_NAME}
         Qt5::Core

@@ -21,16 +21,21 @@ protected:
   QFrame *chatsFrame, *messagesFrame;
   QLineEdit *newMessageLineEdit;
   NewChatDialog *newChatDialog;
-//  QWidget *mainWindow;
+  Chats *chats;
+  VKratseUser *user;
 
 public:
-  explicit ChatsWidget(QWidget* parent = nullptr);
+  explicit ChatsWidget(QWidget* parent = nullptr, Chats *chats = nullptr, VKratseUser *user = nullptr);
   ~ChatsWidget() override;
 
-public slots:
+private slots:
+  void refreshMessages() const;
   void refresh() const;
   void sendMessage() const;
   void newChat() const;
+
+private:
+  void renderChat(const QString &chat) const;
 };
 
 #endif //VKRATSECLIENT_CHATS_WIDGET_H

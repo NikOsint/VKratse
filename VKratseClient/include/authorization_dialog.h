@@ -27,7 +27,7 @@ public:
 signals:
   void logInSuccessful();
 
-public slots:
+private slots:
   void refresh() const;
   void logIn();
   void reg() const;

@@ -24,7 +24,7 @@ public:
   explicit RegistrationDialog(QWidget* parent = nullptr);
   ~RegistrationDialog() override;
 
-public slots:
+private slots:
   void refresh() const;
   void reg() const;
   void cancel();

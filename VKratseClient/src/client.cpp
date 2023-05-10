@@ -2,10 +2,11 @@
 // Created by nikosint on 09.05.23.
 //
 
-#include "mainwindow.h"
+#include "client.h"
 
 VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
 
+  chats = new Chats();
   user = new VKratseUser();
 
   setWindowTitle("VKratse");
@@ -17,7 +18,7 @@ VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
   tabWidget = new QTabWidget(this);
   layout->addWidget(tabWidget);
 
-  chatsWidget = new ChatsWidget(this);
+  chatsWidget = new ChatsWidget(this, chats, user);
   tabWidget->addTab(chatsWidget, "Chats");
 
   authorizationDialog = new AuthorizationDialog(this, user);
@@ -29,4 +30,5 @@ VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
 
 VKratseClient::~VKratseClient() {
   delete user;
+  delete chats;
 }
