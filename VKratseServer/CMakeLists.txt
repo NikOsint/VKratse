@@ -23,7 +23,8 @@ add_executable(VKratseServer
         src/server.cpp
         include/worker.h
         src/worker.cpp
-        include/message_type.h)
+        include/message_type.h
+        include/db_connection.h)
 
 target_link_libraries(VKratseServer
         Qt5::Core
