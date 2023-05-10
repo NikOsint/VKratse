@@ -4,7 +4,7 @@
 
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
+VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
 
   user = new VKratseUser();
 
@@ -27,6 +27,6 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
   tabWidget->addTab(settingsWidget, "Settings");
 }
 
-MainWindow::~MainWindow() {
+VKratseClient::~VKratseClient() {
   delete user;
 }

@@ -11,7 +11,7 @@
 #include "settings_widget.h"
 #include "chats_widget.h"
 
-class MainWindow : public QWidget {
+class VKratseClient : public QWidget {
   Q_OBJECT
 
 protected:
@@ -23,8 +23,8 @@ protected:
   VKratseUser *user;
 
 public:
-  explicit MainWindow(QWidget* parent = nullptr);
-  ~MainWindow() override;
+  explicit VKratseClient(QWidget* parent = nullptr);
+  ~VKratseClient() override;
 
 //  void begin() const;
 
