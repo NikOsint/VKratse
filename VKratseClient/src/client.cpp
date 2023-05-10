@@ -6,6 +6,7 @@
 
 VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
 
+  socket = new QTcpSocket(this);
   chats = new Chats();
   user = new VKratseUser();
 
@@ -31,4 +32,8 @@ VKratseClient::VKratseClient(QWidget* parent) : QWidget(parent) {
 VKratseClient::~VKratseClient() {
   delete user;
   delete chats;
+}
+
+void VKratseClient::connectToServer(const QHostAddress &address, quint16 port) const {
+  socket->connectToHost(address, port);
 }

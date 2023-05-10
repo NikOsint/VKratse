@@ -89,6 +89,7 @@ void ChatsWidget::refresh() const {
 }
 
 void ChatsWidget::sendMessage() const {
+  // implement sending to server //todo
   int rows = messagesTableWidget->rowCount();
   messagesTableWidget->setRowCount(rows + 1);
   QString text = newMessageLineEdit->text();
@@ -108,12 +109,10 @@ void ChatsWidget::sendMessage() const {
     text, date, time
   });
   newMessageLineEdit->clear();
-//  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void ChatsWidget::newChat() const {
   newChatDialog->show();
-//  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void ChatsWidget::renderChat(const QString &chat) const {

@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
   VKratseServer server{};
   int port;
   if (argc != 2) {
-    std::cout << "Incorrect use of VKratseServer.\nType \"[VKratseServer Binary Path] [Port Number]\"\n";
+    std::cout << "Incorrect use of VKratseServer.\nUse: \"[VKratseServer Binary Path] [Port Number]\"\n";
     return 1;
   }
   port = std::stoi(std::string(argv[1]));

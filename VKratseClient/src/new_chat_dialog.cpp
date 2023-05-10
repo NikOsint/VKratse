@@ -49,6 +49,8 @@ void NewChatDialog::refresh() const {
 }
 
 void NewChatDialog::createChat() {
+  //implement checking if desired user exists //todo
+  //implement loading chat history from server //todo
   QString newChat = newChatLineEdit->text();
   int chatCount = chatsTableWidget->rowCount();
   for (int i = 0; i < chatCount; ++i) {
@@ -64,7 +66,6 @@ void NewChatDialog::createChat() {
   chats->operator[](newChat) = Chat();
   newChatLineEdit->clear();
   close();
-//  QMessageBox::information(nullptr, "Unimplemented Feature", "This feature is currently under development"); //TODO
 }
 
 void NewChatDialog::cancel() {

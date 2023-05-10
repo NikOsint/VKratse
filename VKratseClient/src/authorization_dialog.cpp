@@ -56,6 +56,7 @@ void AuthorizationDialog::refresh() const {
 }
 
 void AuthorizationDialog::logIn() {
+  //implement real authorization //todo
   if (loginLineEdit->text() != "NikOsint") {
     QMessageBox::information(nullptr, "Log In Unsuccessful", "Please, try again");
     return;
@@ -65,12 +66,12 @@ void AuthorizationDialog::logIn() {
     user->setName("Nikolay");
     user->setSurname("Osintsev");
     emit logInSuccessful();
-  }
-  loginLineEdit->clear();
-  passwordLineEdit->clear();
-  hide();
-  if (MainWindow) {
-    MainWindow->setEnabled(true);
+    loginLineEdit->clear();
+    passwordLineEdit->clear();
+    hide();
+    if (MainWindow) {
+      MainWindow->setEnabled(true);
+    }
   }
 }
 

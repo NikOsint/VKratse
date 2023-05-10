@@ -6,6 +6,8 @@
 #define VKRATSECLIENT_CLIENT_H
 
 #include <QTabWidget>
+#include <QTcpSocket>
+#include <QHostAddress>
 
 #include "authorization_dialog.h"
 #include "settings_widget.h"
@@ -22,12 +24,15 @@ protected:
   SettingsWidget *settingsWidget;
   VKratseUser *user;
   Chats *chats;
+  QTcpSocket *socket;
 
 public:
   explicit VKratseClient(QWidget* parent = nullptr);
   ~VKratseClient() override;
 
-public slots:
+  void connectToServer(const QHostAddress &address, quint16 port) const;
+
+//public slots:
 
 };
 

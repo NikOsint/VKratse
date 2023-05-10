@@ -74,6 +74,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
 SettingsWidget::~SettingsWidget() = default;
 
 void SettingsWidget::setAvatar(const QString &filename) {
+  //implement receiving avatar from server if user has it ///todo
   QPixmap pm(filename);
   if (pm.isNull()) {
     QMessageBox::warning(nullptr, "Error Loading Avatar", "Can not open file " + filename);
@@ -107,6 +108,7 @@ void SettingsWidget::changeTheme() const {
 }
 
 void SettingsWidget::logOut() const {
+  //implement sending logging out message to the server //todo
   if (mainWindow && authorizationDialog) {
     mainWindow->setEnabled(false);
     authorizationDialog->setEnabled(true);
