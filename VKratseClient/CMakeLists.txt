@@ -27,7 +27,11 @@ add_executable(${PROJECT_NAME}
         include/settings_widget.h
         src/settings_widget.cpp
         include/chats_widget.h
-        src/chats_widget.cpp include/new_chat_dialog.h src/new_chat_dialog.cpp)
+        src/chats_widget.cpp
+        include/new_chat_dialog.h
+        src/new_chat_dialog.cpp
+        include/user.h
+        src/user.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         Qt5::Core
