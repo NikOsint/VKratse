@@ -4,7 +4,10 @@
 
 #include "authorization_dialog.h"
 
-AuthorizationDialog::AuthorizationDialog(QWidget* parent) : QDialog(parent), MainWindow(parent) {
+AuthorizationDialog::AuthorizationDialog(QWidget* parent, VKratseUser* user)
+  : QDialog(parent),
+    MainWindow(parent),
+    user(user) {
 
   setWindowTitle("VKratse");
 
@@ -53,6 +56,16 @@ void AuthorizationDialog::refresh() const {
 }
 
 void AuthorizationDialog::logIn() {
+  if (loginLineEdit->text() != "NikOsint") {
+    QMessageBox::information(nullptr, "Log In Unsuccessful", "Please, try again");
+    return;
+  }
+  if (user) {
+    user->setLogin("NikOsint");
+    user->setName("Nikolay");
+    user->setSurname("Osintsev");
+    emit logInSuccessful();
+  }
   loginLineEdit->clear();
   passwordLineEdit->clear();
   hide();

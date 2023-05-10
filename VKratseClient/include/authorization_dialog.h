@@ -6,6 +6,7 @@
 #define VKRATSECLIENT_AUTHORIZATION_DIALOG_H
 
 #include "registration_dialog.h"
+#include "user.h"
 
 class AuthorizationDialog : public QDialog {
   Q_OBJECT
@@ -17,10 +18,14 @@ protected:
   QPushButton *registerButton, *logInButton;
   RegistrationDialog *registrationDialog;
   QWidget *MainWindow;
+  VKratseUser *user;
 
 public:
-  explicit AuthorizationDialog(QWidget* parent = nullptr);
+  explicit AuthorizationDialog(QWidget* parent = nullptr, VKratseUser* user = nullptr);
   ~AuthorizationDialog() override;
+
+signals:
+  void logInSuccessful();
 
 public slots:
   void refresh() const;

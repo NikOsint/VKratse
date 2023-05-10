@@ -22,16 +22,19 @@ protected:
   QPixmap *avatar;
   QWidget *mainWindow;
   AuthorizationDialog *authorizationDialog;
+  VKratseUser *user;
 
 public:
   explicit SettingsWidget(QWidget* parent = nullptr,
                           AuthorizationDialog* authorizationDialog = nullptr,
+                          VKratseUser* user = nullptr,
                           bool isDarkTheme = false);
   ~SettingsWidget() override;
 
   void setAvatar(const QString &filename);
 
 public slots:
+  void updateUser() const;
   void changeAvatar() const;
   void changePassword() const;
   void changeTheme() const;

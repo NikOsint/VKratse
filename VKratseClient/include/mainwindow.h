@@ -20,6 +20,7 @@ protected:
   AuthorizationDialog *authorizationDialog;
   ChatsWidget *chatsWidget;
   SettingsWidget *settingsWidget;
+  VKratseUser *user;
 
 public:
   explicit MainWindow(QWidget* parent = nullptr);

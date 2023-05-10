@@ -6,11 +6,13 @@
 
 SettingsWidget::SettingsWidget(QWidget* parent,
                                AuthorizationDialog* authorizationDialog,
+                               VKratseUser* user,
                                bool isDarkTheme)
                                : QWidget(parent) {
 
   this->mainWindow = parent;
   this->authorizationDialog = authorizationDialog;
+  this->user = user;
   this->isDarkTheme = isDarkTheme;
 
   layout = new QGridLayout(this);
@@ -37,7 +39,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
   centerFrameLayout->addWidget(avatarLabel, 0, 0, 1, 1);
 
   nameSurnameLabel = new QLabel(this);
-  nameSurnameLabel->setText("Name Surname");
+  updateUser();
   nameSurnameLabel->setAlignment(Qt::AlignCenter);
   nameSurnameLabel->setTextFormat(Qt::TextFormat::RichText);
   nameSurnameLabel->setFrameShape(QFrame::Shape::Panel);
@@ -66,10 +68,10 @@ SettingsWidget::SettingsWidget(QWidget* parent,
   connect(changePasswordButton, SIGNAL(pressed()), this, SLOT(changePassword()));
   connect(changeThemeButton, SIGNAL(pressed()), this, SLOT(changeTheme()));
   connect(logOutButton, SIGNAL(pressed()), this, SLOT(logOut()));
+  connect(authorizationDialog, SIGNAL(logInSuccessful()), this, SLOT(updateUser()));
 }
 
 SettingsWidget::~SettingsWidget() = default;
-
 
 void SettingsWidget::setAvatar(const QString &filename) {
   QPixmap pm(filename);
@@ -82,6 +84,14 @@ void SettingsWidget::setAvatar(const QString &filename) {
     pm = pm.scaled(600, 600);
   }
   avatar = new QPixmap(pm);
+}
+
+void SettingsWidget::updateUser() const {
+  if (user && user->isValid()) {
+    nameSurnameLabel->setText(user->getNameSurname());
+  } else {
+    nameSurnameLabel->setText("Name Surname");
+  }
 }
 
 void SettingsWidget::changeAvatar() const {

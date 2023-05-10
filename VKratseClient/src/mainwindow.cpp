@@ -6,6 +6,8 @@
 
 MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
 
+  user = new VKratseUser();
+
   setWindowTitle("VKratse");
   setEnabled(false);
 
@@ -18,12 +20,13 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent) {
   chatsWidget = new ChatsWidget(this);
   tabWidget->addTab(chatsWidget, "Chats");
 
-  authorizationDialog = new AuthorizationDialog(this);
-
-  settingsWidget = new SettingsWidget(this, authorizationDialog);
-  tabWidget->addTab(settingsWidget, "Settings");
-
+  authorizationDialog = new AuthorizationDialog(this, user);
   authorizationDialog->show();
+
+  settingsWidget = new SettingsWidget(this, authorizationDialog, user);
+  tabWidget->addTab(settingsWidget, "Settings");
 }
 
-MainWindow::~MainWindow() = default;
+MainWindow::~MainWindow() {
+  delete user;
+}
