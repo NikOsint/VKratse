@@ -9,7 +9,7 @@ enum ServerMessageType {
   AuthorizationSuccessful,
   AuthorizationFailed,
   RegistrationSuccessful,
-  NewMessage,
+  NewMessage, // ServerMessageType::NewMessage = ClientMessageType::SendMessage
   UserExists,
   NoSuchUser
 };

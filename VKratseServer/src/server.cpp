@@ -20,7 +20,8 @@ void VKratseServer::incomingConnection(qintptr socketDescriptor) {
   emit logMessage(QStringLiteral("New client connected"));
 }
 
-void VKratseServer::stopServer() {
+VKratseServer::~VKratseServer() {
+  logMessage(QLatin1String("Stopping server"));
   for (auto *worker : workers) {
     worker->disconnectFromClient();
   }

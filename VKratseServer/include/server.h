@@ -19,12 +19,10 @@ class VKratseServer : public QTcpServer {
 
 public:
   explicit VKratseServer(QObject *parent = nullptr);
+  ~VKratseServer() override;
 
 protected:
   void incomingConnection(qintptr socketDescriptor) override;
-
-public slots:
-  void stopServer();
 
 private slots:
   void logMessage(const QString &msg);
