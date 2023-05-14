@@ -6,6 +6,14 @@ VKratse is a Qt-based messenger written with C++
 
 VKratse has two main components: [Client](./VKratseClient) and [Server](./VKratseServer)
 
+## TODOs
+
+- Cover everything in a namespace
+- Implement client web functionality
+- Connect server to the DB
+- Rewrite client so that GUI parts communicate using signals, not injections
+- Rewrite web functionality with Boost
+
 ## Client
 
 ### Overview
