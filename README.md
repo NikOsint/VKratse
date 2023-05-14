@@ -13,6 +13,9 @@ VKratse has two main components: [Client](./VKratseClient) and [Server](./VKrats
 - Connect server to the DB
 - Rewrite client so that GUI parts communicate using signals, not injections
 - Rewrite web functionality with Boost
+- Rewrite server to be multi-threaded
+- Implement server rate limiter
+- Implement secure password hashing
 
 ## Client
 
