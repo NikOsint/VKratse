@@ -2,6 +2,10 @@
 
 VKratse is a Qt-based messenger written with C++
 
+*This branch is for development while the main branch is being reviewed*
+
+*The main branch was NOT updated sine 10.05.2023*
+
 ![VKratse Messenger](screenshots/messenger.png)
 
 VKratse has two main components: [Client](./VKratseClient) and [Server](./VKratseServer)
@@ -13,7 +17,7 @@ VKratse has two main components: [Client](./VKratseClient) and [Server](./VKrats
 - Connect server to the DB
 - Rewrite client so that GUI parts communicate using signals, not injections
 - Rewrite web functionality with Boost
-- Rewrite server to be multi-threaded
+- Rewrite server to be multithreaded
 - Implement server rate limiter
 - Implement secure password hashing
 
